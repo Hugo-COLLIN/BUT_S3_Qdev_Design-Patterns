@@ -1,0 +1,50 @@
+@startuml
+class Identite{
+- nip : String
+- nom : String
+- prenom : String
++ Identite(nip : String, nom : String, prenom : String)
+}
+
+class Etudiant {
+- resultats : Map<String, Notes>
++ ajouterNote(String, float)
++ ajouterListeNote(String, List<Float>)
++ moyMat(String) : float
++ moyGen() : float
+}
+
+class Notes {
+- moyenne : float
+- listNotes : List<Float>
++ Notes()
++ getMoyenne() : float
++ addNote(float)
++ calculerMoyenne()
+}
+
+class Formation{
+- identifiant : String
+- matieres : Map<String, Float>
+
++ Formation(identifiant : String)
++ getCoeff(String) : float
++ ajouterMatiere(String, float)
++ supprimerMatiere(matiere : String)
+}
+
+class Groupe {
++ Groupe(Formation, List<Etudiant>)
++ ajouterEtudiant(etudiant : Etudiant)
++ supprimerEtudiant(nomEtu : String)
++ calculerMoyenneMatiere() : double
++ calculerMoyenneGenerale() : double
++ triAlpha()
++ triAntiAlpha()
++triParMerite()
+}
+Etudiant "1" --> "0..1" Identite : - id
+Etudiant "*" --> "0..1" Formation  : - formation
+Groupe "1" --> "0..1" Formation : - formation
+Groupe --> "0..*" Etudiant : - etudiants
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+hide footbox
+participant Actor
+participant main
+participant "etudiant : Etudiant" as Etudiant
+participant Formation
+participant Notes
+
+Actor -> main : main
+main -> Etudiant : moyenneGenerale()
+activate Etudiant
+
+loop pour chaque matieres
+
+Etudiant -> Etudiant : getCoeffM(matiere)
+activate Etudiant
+Etudiant -> Formation : getCoeff(matiere)
+activate Formation
+Formation --> Etudiant :float
+deactivate Formation
+Etudiant --> Etudiant : float
+deactivate Etudiant
+Etudiant -> Etudiant : moyenneMatiere(matiere)
+activate Etudiant
+Etudiant -> Notes : getMoyenne()
+activate Notes
+Notes --> Etudiant : double
+deactivate Notes
+Etudiant --> Etudiant : double
+deactivate Etudiant
+
+end loop
+
+Etudiant --> main : 25.0
+deactivate Etudiant
+@enduml

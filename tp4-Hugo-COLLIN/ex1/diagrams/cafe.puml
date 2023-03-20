@@ -1,0 +1,44 @@
+@startuml
+
+abstract class Boisson
+{
+    # description : String
+
+    + getDescription() : String
+    + cout() : double {abstract}
+}
+
+class BoissonChantilly
+{
+    + BoissonChantilly (Boisson)
+}
+"BoissonChantilly" --|> "DecorateurIngredient"
+
+class Colombia
+{
+    + Colombia ()
+    + cout() : double
+}
+"Colombia" --|> "Boisson"
+
+class Expresso
+{
+    + Expresso ()
+    + cout() : double
+}
+"Expresso" --|> "Boisson"
+
+class DecorateurIngredient
+{
+    # composant : Boisson
+    # prix : double
+
+    + DecorateurIngredient (double, String, Boisson)
+    + getDescription() : String
+    + cout() : double
+}
+"DecorateurIngredient" --|> "Boisson"
+
+
+
+@enduml

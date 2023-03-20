@@ -1,0 +1,112 @@
+@startuml
+hide footbox
+participant Actor
+Actor -> main : main
+activate main
+
+main -> Etudiant : ajouterNote
+activate Etudiant
+Etudiant -> Formation : getMatieres
+activate Formation
+Formation --> Etudiant
+deactivate Formation
+Etudiant -> Etudiant : matiereInFormation
+activate Etudiant
+Etudiant -> Formation : getMatieres
+activate Formation
+Formation --> Etudiant
+deactivate Formation
+Etudiant --> Etudiant
+deactivate Etudiant
+Etudiant -> Notes : addNote
+activate Notes
+Notes -> Notes : calculerMoyenne
+activate Notes
+Notes --> Notes
+deactivate Notes
+Notes --> Etudiant
+deactivate Notes
+Etudiant --> main
+deactivate Etudiant
+main -> Etudiant : ajouterNote
+activate Etudiant
+Etudiant -> Formation : getMatieres
+activate Formation
+Formation --> Etudiant
+deactivate Formation
+Etudiant -> Etudiant : matiereInFormation
+activate Etudiant
+Etudiant -> Formation : getMatieres
+activate Formation
+Formation --> Etudiant
+deactivate Formation
+Etudiant --> Etudiant
+deactivate Etudiant
+Etudiant -> Notes : addNote
+activate Notes
+Notes -> Notes : calculerMoyenne
+activate Notes
+Notes --> Notes
+deactivate Notes
+Notes --> Etudiant
+deactivate Notes
+Etudiant --> main
+deactivate Etudiant
+main -> Etudiant : ajouterNote
+activate Etudiant
+Etudiant -> Formation : getMatieres
+activate Formation
+Formation --> Etudiant
+deactivate Formation
+Etudiant -> Etudiant : matiereInFormation
+activate Etudiant
+Etudiant -> Formation : getMatieres
+activate Formation
+Formation --> Etudiant
+deactivate Formation
+Etudiant --> Etudiant
+deactivate Etudiant
+Etudiant -> Notes : addNote
+activate Notes
+Notes -> Notes : calculerMoyenne
+activate Notes
+Notes --> Notes
+deactivate Notes
+Notes --> Etudiant
+deactivate Notes
+Etudiant --> main
+deactivate Etudiant
+main -> Groupe : moyenne
+activate Groupe
+Groupe -> Moyenne : calculMoyenne
+activate Moyenne
+Moyenne -> MoyenneMatiere : calculMoyenne
+activate MoyenneMatiere
+MoyenneMatiere -> Etudiant : moyenneMatiere
+activate Etudiant
+Etudiant -> Etudiant : matiereInFormation
+activate Etudiant
+Etudiant -> Formation : getMatieres
+activate Formation
+Formation --> Etudiant
+deactivate Formation
+Etudiant --> Etudiant
+deactivate Etudiant
+Etudiant -> Notes : nbNotes
+activate Notes
+Notes --> Etudiant
+deactivate Notes
+Etudiant -> Notes : getMoyenne
+activate Notes
+Notes --> Etudiant
+deactivate Notes
+Etudiant --> MoyenneMatiere
+deactivate Etudiant
+MoyenneMatiere --> Moyenne
+deactivate MoyenneMatiere
+Moyenne --> Groupe
+deactivate Moyenne
+Groupe --> main
+deactivate Groupe
+return
+@enduml

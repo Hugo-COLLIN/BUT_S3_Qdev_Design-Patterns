@@ -1,0 +1,57 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class Controler {
+  + Controler(ModelCompteur): 
+  - model: ModelCompteur
+  + handle(ActionEvent): void
+}
+class Exo0_MVC {
+  + Exo0_MVC(): 
+  + main(String[]): void
+  + start(Stage): void
+}
+class ModelCompteur {
+  + ModelCompteur(): 
+  - observateurs: ArrayList<Observateur>
+  - compteur: int
+  - nbClics: int
+  + modifier(int): void
+  + enregistrerObservateur(Observateur): void
+  + supprimerObservateur(Observateur): void
+  + getNbClics(): int
+  + notifierObservateurs(): void
+  + getCompteur(): int
+}
+interface Observateur << interface >> {
+  + actualiser(Sujet): void
+}
+interface Sujet << interface >> {
+  + enregistrerObservateur(Observateur): void
+  + notifierObservateurs(): void
+  + supprimerObservateur(Observateur): void
+}
+class VueClics {
+  + VueClics(ModelCompteur): 
+  - mod: ModelCompteur
+  + actualiser(Sujet): void
+}
+class VueGraphique {
+  + VueGraphique(ModelCompteur): 
+  - mod: ModelCompteur
+  + actualiser(Sujet): void
+}
+class VueTexte {
+  + VueTexte(ModelCompteur): 
+  - mod: ModelCompteur
+  + actualiser(Sujet): void
+}
+
+ModelCompteur  -[#008200,dashed]-^  Sujet         
+VueClics       -[#008200,dashed]-^  Observateur   
+VueGraphique   -[#008200,dashed]-^  Observateur   
+VueTexte       -[#008200,dashed]-^  Observateur   
+@enduml
